@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bbarkthong.bbs.no_fe.presentation.VO.MenuAuthVO;
-import com.bbarkthong.bbs.no_fe.presentation.VO.MenuVO;
+import com.bbarkthong.bbs.no_fe.model.VO.MenuAuthVO;
+import com.bbarkthong.bbs.no_fe.model.VO.MenuVO;
 
 @Service
 public class MenuService {

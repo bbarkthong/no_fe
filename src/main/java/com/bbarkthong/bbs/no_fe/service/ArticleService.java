@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.bbarkthong.bbs.no_fe.presentation.VO.UserVO;
+import com.bbarkthong.bbs.no_fe.model.VO.UserVO;
 
 @Service
 public class ArticleService {

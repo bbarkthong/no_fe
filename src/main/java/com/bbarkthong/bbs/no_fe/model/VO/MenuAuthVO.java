@@ -1,4 +1,4 @@
-package com.bbarkthong.bbs.no_fe.presentation.VO;
+package com.bbarkthong.bbs.no_fe.model.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
