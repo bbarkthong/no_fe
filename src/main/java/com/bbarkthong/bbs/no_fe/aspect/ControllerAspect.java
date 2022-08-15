@@ -1,8 +1,8 @@
 package com.bbarkthong.bbs.no_fe.aspect;
 
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,6 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 public class ControllerAspect {
 
+    /**
+     * 
+     * @see https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop
+     */
     @Around("execution(* com..*.controller.*.*(..))")
     public Object BeforeController(ProceedingJoinPoint pjp) throws Throwable {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
@@ -33,25 +37,20 @@ public class ControllerAspect {
             params.put("method", methodName);
             params.put("httpMethod", request.getMethod());
             params.put("requestURI", request.getRequestURI());
-            params.put("params", getParams(request));
+            params.put("params", paramMapToString(request.getParameterMap()));
         } catch (Exception e) {
             log.error("ControllerAspect", e);
         }
 
-        log.info("Controller 로그:{}", params);
+        log.info("Controller Request:{}", params);
         Object retVal = pjp.proceed();
 
         return retVal;
     }
 
-    private static Map<String, Object> getParams(HttpServletRequest request) throws Throwable {
-        Map<String, Object> retVal = new HashMap<String, Object>();
-        Enumeration<String> enums = request.getParameterNames();
-        while (enums.hasMoreElements()) {
-            String originKey = enums.nextElement();
-            String key = originKey.replaceAll("\\.", "-");
-            retVal.put(key, request.getParameter(key));
-        }
-        return retVal;
+    private String paramMapToString(Map<String, String[]> paramMap) {
+        return paramMap.entrySet().stream()
+                .map(entry -> String.format("%s -> (%s)", entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining(","));
     }
 }
