@@ -1,9 +1,9 @@
 package com.bbarkthong.bbs.no_fe.model.VO;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class UserVO {
     private String user_id;
