@@ -1,4 +1,7 @@
 spring:
+  output:
+    ansi:
+      enabled: DETECT 
   config:
     activate:
       on-profile:
@@ -11,6 +14,9 @@ spring:
     driver-class-name: org.h2.Driver
 
 logging:
+  # file: /logs/application-debug.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   level:
-    org:
-      springframework: DEBUG
+    root: info
