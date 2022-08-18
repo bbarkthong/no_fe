@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bbarkthong.bbs.no_fe.presentation.VO.UserVO;
-import com.bbarkthong.bbs.no_fe.presentation.tui.GridData;
-import com.bbarkthong.bbs.no_fe.presentation.tui.GridResult;
-import com.bbarkthong.bbs.no_fe.presentation.tui.Pagination;
+import com.bbarkthong.bbs.no_fe.model.VO.UserVO;
+import com.bbarkthong.bbs.no_fe.model.tui.*;
 import com.bbarkthong.bbs.no_fe.service.ArticleService;
 
 import lombok.RequiredArgsConstructor;

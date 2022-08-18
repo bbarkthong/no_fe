@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bbarkthong.bbs.no_fe.presentation.VO.MenuAuthVO;
-import com.bbarkthong.bbs.no_fe.presentation.VO.MenuVO;
-import com.bbarkthong.bbs.no_fe.presentation.tui.GridData;
-import com.bbarkthong.bbs.no_fe.presentation.tui.GridResult;
-import com.bbarkthong.bbs.no_fe.presentation.tui.Pagination;
+import com.bbarkthong.bbs.no_fe.model.VO.MenuAuthVO;
+import com.bbarkthong.bbs.no_fe.model.VO.MenuVO;
+import com.bbarkthong.bbs.no_fe.model.tui.GridData;
+import com.bbarkthong.bbs.no_fe.model.tui.GridResult;
+import com.bbarkthong.bbs.no_fe.model.tui.Pagination;
 import com.bbarkthong.bbs.no_fe.service.MenuService;
 
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.bbarkthong.bbs.no_fe.presentation.tui;
+package com.bbarkthong.bbs.no_fe.model.tui;
 
 import lombok.Builder;
 import lombok.Getter;
