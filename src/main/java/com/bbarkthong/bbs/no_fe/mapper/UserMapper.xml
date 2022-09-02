@@ -6,7 +6,7 @@
             user_id,
             user_nm,
             gender,
-            password
+            user_password
         )
         values (
             #{user_id},

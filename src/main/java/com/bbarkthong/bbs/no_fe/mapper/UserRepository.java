@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.bbarkthong.bbs.no_fe.model.VO.UserVO;
 
 @Repository
-public interface UserMapper {
+public interface UserRepository {
     public List<UserVO> getAllUsers() throws Exception;
 
     public UserVO getUserById(String id) throws Exception;
