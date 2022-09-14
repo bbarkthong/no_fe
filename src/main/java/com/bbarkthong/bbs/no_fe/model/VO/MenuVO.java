@@ -8,4 +8,5 @@ import lombok.Getter;
 public class MenuVO {
     private String menu_id;
     private String menu_nm;
+    private String menu_url;
 }
