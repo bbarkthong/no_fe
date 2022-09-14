@@ -30,14 +30,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item" v-for="item in menu" style="margin: 5px;">
+                        <li class="nav-item" v-for="item in Board" style="margin: 5px;">
                             <a class="btn btn-hover"
-                               v-bind:class="{'btn-success disabled':item.menu_id==selected_menu.id, 'btn-outline-success':item.menu_id!=selected_menu.id}"
-                               aria-current="page" :href="item.menu_url">
-                            <!-- <a class="btn btn-hover" v-bind:class="{'btn-success disabled':item.menu_id==selected_menu.id, 'btn-outline-success':item.menu_id!=selected_menu.id}" aria-current="page" @click="click_menu(item.menu_id)"><a class="btn btn-hover"
-                                v-bind:class="{'btn-success disabled':item.menu_id==selected_menu.id, 'btn-outline-success':item.menu_id!=selected_menu.id}"
-                                aria-current="page" @click="click_menu(item.menu_id)"> -->
-                                {{ item.menu_nm }}
+                               v-bind:class="{'btn-success disabled':item.id==Selected_Board.id, 'btn-outline-success':item.id!=Selected_Board.id}"
+                               aria-current="page" @click="get_grid_data(item.id)">
+                                {{ item.title }}
                             </a>
                         </li>
                     </ul>
@@ -59,67 +56,29 @@
         el: '#container',
         data: {
             is_login: true,
-            selected_menu: {
+            Selected_Board: {
                 id: "",
-                auth: []
             },
-            menu: [],
+            Board: [],
         },
         methods: {
-            click_menu: function (menu_id) {
-                this.selected_menu.id = menu_id;
-                axios.get("http://127.0.0.1:8080/menu/"+ menu_id +"/auth").then((response) => {
-                    console.log(response.data.data.contents);
-                    this.selected_menu.auth = response.data.data.contents;
-                    
-                    if (menu_id == "menu2") {
-                        this.get_user_data();
-                    }
-                });
-            },
-            auth_check: function (auth_id) {
-                return !this.selected_menu.auth.some(item => item.auth_id === auth_id);
-            },
-            get_grid_data: function () {
-                menu_id = this.selected_menu.id;
-                object_id = "asdf";
-                axios.get("http://127.0.0.1:8080/articles?page_id=" + page_id + "&menu_id=" + menu_id + "&object_id=" + object_id).then((response) => {
-                    console.log(response.data);
-                });
-            },
-            get_user_data: function () {
-                menu_id = this.selected_menu.id;
-                object_id = "asdf";
-                const uri = "http://127.0.0.1:8080/users/all?menu_id=" + menu_id + "&object_id=" + object_id;
-                const grid = new tui.Grid({
-                    el: document.getElementById('grid'),
-                    columns: [
-                        {
-                            header: 'ID',
-                            name: 'user_id'
-                        },
-                        {
-                            header: '이름',
-                            name: 'user_nm',
-                            editor: 'text'
-                        },
-                        {
-                            header: '성별',
-                            name: 'gender'
-                        }
-                    ],
-                    rowHeaders: ['checkbox'],
-                });
-                axios.get(uri).then((response) => {
-                    console.log(response.data.data.contents);
-                    grid.resetData(response.data.data.contents);
+            get_grid_data: function (board_id) {
+                this.Selected_Board.id = board_id;
+                axios.get("http://127.0.0.1:8080/Board/" + board_id + "/all").then((response) => {
+                    // console.log(response.data);
+                    grid.resetData(response.data);
                 });
             },
         },
         created: function() {
-            axios.get("http://127.0.0.1:8080/menu/all").then((response) => {
-                console.log(response.data.data.contents);
-                this.menu = response.data.data.contents;
+            axios.get("http://127.0.0.1:8080/Board/all").then((response) => {
+                // console.log(response.data);
+                this.Board = response.data;
+
+                if (this.Selected_Board.id == "") {
+                    this.Selected_Board.id = response.data[0].id;
+                }
+                this.get_grid_data(this.Selected_Board.id);
             });
         }
     })
@@ -132,7 +91,7 @@
         columns: [
             {
                 header: '번호',
-                name: 'no'
+                name: 'id'
             },
             {
                 header: '제목',
