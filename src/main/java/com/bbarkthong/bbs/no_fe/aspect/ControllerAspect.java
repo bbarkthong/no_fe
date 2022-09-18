@@ -33,11 +33,15 @@ public class ControllerAspect {
         Map<String, Object> params = new HashMap<String, Object>();
 
         try {
+            request.getParameterNames().asIterator()
+                    .forEachRemaining(paramName -> log.info(paramName));
+
             params.put("controller", controllerName);
             params.put("method", methodName);
             params.put("httpMethod", request.getMethod());
             params.put("requestURI", request.getRequestURI());
             params.put("params", paramMapToString(request.getParameterMap()));
+
         } catch (Exception e) {
             log.error("ControllerAspect", e);
         }

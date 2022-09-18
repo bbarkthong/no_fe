@@ -8,4 +8,13 @@
     <select id="getAllArticles" resultType="com.bbarkthong.bbs.no_fe.model.VO.ArticleVO" parameterType="java.lang.String">
         SELECT * FROM POST WHERE POST_ID = #{board_id}
     </select>
+    <insert id="registArticle" parameterType="java.util.Map">
+        INSERT INTO POST 
+        VALUES (
+              100
+            , #{title}
+            , #{content}
+            , 1
+        )
+    </insert>
 </mapper>

@@ -43,4 +43,9 @@ public class BoardService {
         return articles;
     }
 
+    public void registArticle(String board_id, Map<String, Object> params) {
+
+        boardRepository.registArticle(params);
+    }
+
 }
