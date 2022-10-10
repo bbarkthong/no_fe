@@ -47,10 +47,13 @@ export default {
         this.articleCartegory = response
         if (this.articleCartegorySel == null) {
           this.articleCartegorySel = this.articleCartegory[0].id
+          this.onChangeArticleCartegory()
         }
       })
     },
     getArticles(boardId) {
+      const url1 = `/Board/${boardId}/all`
+      console.log(url1)
       const url = '/Board/' + boardId + '/all'
       request({
         url,
