@@ -1,23 +1,27 @@
 <template>
   <div class="container">
-    <select class="form-select">
-      <option v-for="item in articleCartegory" :key="item.id" value="{{ item.id }}">{{ item.title }}</option>
+    <select class="form-select form-control" @change="onChangeArticleCartegory" v-model="articleCartegorySel">
+      <option v-for="item in articleCartegory" :key="item.id" :value="item.id">{{ item.title }}</option>
     </select>
-    <table class="table">
-      <tr>
-        그리드
-      </tr>
+    <table class="table table-success table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">제목</th>
+          <th scope="col">내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in articles" :key="item.id">
+          <td>{{item.id}}</td>
+          <td>{{item.title}}</td>
+          <td>{{item.content}}</td>
+        </tr>
+      </tbody>
     </table>
-    <!-- <grid
-      :data="gridProps.data"
-      :columns="gridProps.columns"
-      @click="onClick"
-    ></grid> -->
   </div>
 </template>
 <script>
-// import 'tui-grid/dist/tui-grid.css'
-// import { Grid } from '@toast-ui/vue-grid'
 import request from '@/utils/http-request'
 
 export default {
@@ -27,26 +31,36 @@ export default {
   data() {
     return {
       articleCartegory: [],
+      articleCartegorySel: null,
       articles: []
     }
   },
   created() {
-    console.log('getArticleCartegory:')
-    const ret = this.getArticleCartegory()
-    this.articleCartegory = ret
-    console.log(ret.PromiseResult)
-    console.log(this.articleCartegory)
+    this.getArticleCartegory()
   },
   methods: {
-    async getArticleCartegory() {
-      return await request({
+    getArticleCartegory() {
+      request({
         url: '/Board/all',
-        // param: query,
         method: 'get'
+      }).then(response => {
+        this.articleCartegory = response
+        if (this.articleCartegorySel == null) {
+          this.articleCartegorySel = this.articleCartegory[0].id
+        }
       })
     },
-    onClick(ev) {
-      console.log('click event: ', ev)
+    getArticles(boardId) {
+      const url = '/Board/' + boardId + '/all'
+      request({
+        url,
+        method: 'get'
+      }).then(response => {
+        this.articles = response
+      })
+    },
+    onChangeArticleCartegory() {
+      this.getArticles(this.articleCartegorySel)
     }
   }
 }

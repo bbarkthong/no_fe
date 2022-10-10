@@ -15,8 +15,6 @@ service.interceptors.request.use(
     if (accessToken) {
       config.headers.common = { Authorization: `Bearer ${accessToken}` }
     }
-    console.log('req:')
-    console.log(config)
     return config
   },
   (error) => {

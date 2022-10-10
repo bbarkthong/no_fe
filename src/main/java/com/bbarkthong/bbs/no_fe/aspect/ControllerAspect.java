@@ -26,13 +26,15 @@ public class ControllerAspect {
      */
     @Around("execution(* com..*.controller.*.*(..))")
     public Object BeforeController(ProceedingJoinPoint pjp) throws Throwable {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
-                .getRequest();
-        String controllerName = pjp.getSignature().getDeclaringType().getName();
-        String methodName = pjp.getSignature().getName();
+
         Map<String, Object> params = new HashMap<String, Object>();
 
         try {
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                    .getRequest();
+            String controllerName = pjp.getSignature().getDeclaringType().getName();
+            String methodName = pjp.getSignature().getName();
+
             request.getParameterNames().asIterator()
                     .forEachRemaining(paramName -> log.info(paramName));
 

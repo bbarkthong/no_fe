@@ -15,7 +15,6 @@ import com.bbarkthong.bbs.no_fe.model.VO.ArticleVO;
 import com.bbarkthong.bbs.no_fe.model.VO.BoardVO;
 import com.bbarkthong.bbs.no_fe.service.BoardService;
 
-import ch.qos.logback.classic.Logger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
