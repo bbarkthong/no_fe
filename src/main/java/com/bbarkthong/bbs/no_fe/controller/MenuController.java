@@ -5,12 +5,14 @@ import java.util.Map;
 
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bbarkthong.bbs.no_fe.model.VO.MenuAuthVO;
 import com.bbarkthong.bbs.no_fe.model.VO.MenuVO;
+import com.bbarkthong.bbs.no_fe.model.VO.UserVO;
 import com.bbarkthong.bbs.no_fe.model.tui.GridData;
 import com.bbarkthong.bbs.no_fe.model.tui.GridResult;
 import com.bbarkthong.bbs.no_fe.model.tui.Pagination;
@@ -48,6 +50,17 @@ class MenuController {
                 .data(GridData.builder().contents(list).pagination(Pagination.builder().page(1).totalCount(100).build())
                         .build())
                 .result(result).build();
+    }
+
+    /**
+     * @return
+     */
+    @PostMapping("/menu/all")
+    public GridResult PostAllMenu(UserVO user_info, Pageable pageable) throws Exception {
+
+        log.debug("param : {} ", user_info);
+
+        return null;
     }
 
     @GetMapping("/menu/{menu_id}/auth")

@@ -1,11 +1,53 @@
 spring:
-  output:
-    ansi:
-      enabled: DETECT 
+  profiles:
+    active: local-was 
+
+server:
+  port: 8081
+  
+mybatis:
+  mapper-locations: mapper/**/*.xml
+
+logging:
+  # file: /logs/application-debug.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    #file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    root: debug
+---
+spring:
   config:
     activate:
-      on-profile:
-      - local
+      on-profile: local-was
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    generate-unique-name: false
+  h2.console.enabled: true
+
+logging:
+  level:
+    root: debug
+---
+spring:
+  config:
+    activate:
+      on-profile: local-db
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    generate-unique-name: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test 
   h2.console.enabled: true
   datasource:
     url: jdbc:h2:~/test
@@ -15,9 +57,21 @@ spring:
     generate-unique-name: false
 
 logging:
-  # file: /logs/application-debug.log
-  pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
-    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
   level:
-    root: debug
+    root: warn
+---
+spring:
+  config:
+    activate:
+      on-profile: prod   
+  h2.console.enabled: true
+  datasource:
+    url: jdbc:h2:~/test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    generate-unique-name: false
+
+logging:
+  level:
+    root: error

@@ -1,12 +1,13 @@
 package com.bbarkthong.bbs.no_fe.model.VO;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 @AllArgsConstructor
-public class MenuVO {
-    private String menu_id;
-    private String menu_nm;
-    private String menu_url;
+public class BoardVO {
+    private String id;
+    private String title;
 }
