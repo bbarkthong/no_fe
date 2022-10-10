@@ -27,6 +27,14 @@ spring:
     driver-class-name: org.h2.Driver
     generate-unique-name: false
   h2.console.enabled: true
+  jpa:
+    database-platform: H2
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      mode: always
 
 logging:
   level:
@@ -55,6 +63,10 @@ spring:
     password:
     driver-class-name: org.h2.Driver
     generate-unique-name: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
 
 logging:
   level:
@@ -71,6 +83,10 @@ spring:
     password:
     driver-class-name: org.h2.Driver
     generate-unique-name: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
 
 logging:
   level:
