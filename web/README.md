@@ -51,3 +51,8 @@ import { Grid } from '@toast-ui/vue-grid';
 Vue.component('grid',Grid)
 ```
 
+See (https://www.npmjs.com/package/@toast-ui/vue-editor)
+```
+npm install --save @toast-ui/vue-editor
+```
+

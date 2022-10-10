@@ -1,13 +1,17 @@
 <template>
   <div>
-    PostRegister
+    <editor />
   </div>
 </template>
 
 <script>
-export default {
+// import Editor from '@/components/ToastEditor'
 
-}
+// export default {
+//   components: {
+//     editor: Editor
+//   }
+// }
 </script>
 
 <style>

@@ -40,6 +40,7 @@ export default {
   // name: 'Header',
   data() {
     return {
+      activeClass: 'activeMenu',
       selected_menu: {
         id: '',
         auth: []
@@ -69,10 +70,16 @@ export default {
     {
       menu_id: '4',
       menu_nm: '글등록',
-      menu_to: '/post/register'
+      menu_to: '/post/editor'
     }]
 
     this.is_login = true
   }
 }
 </script>
+
+<style scoped>
+.router-link-active {
+  background-color: aqua;
+}
+</style>
